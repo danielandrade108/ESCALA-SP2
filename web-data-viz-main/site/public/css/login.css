@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Saira+Condensed&display=swap');
+
+* {
+    font-family: 'Saira Condensed', sans-serif;
+
+}
+
+body {
+    margin: 0;
+    background-color: #222222;
+}
+
+.header {
+    width: 100%;
+    height: 15vh;
+    background-color: #464646;
+    border-bottom: 0.5vh solid #DE0209;
+    margin: 0;
+}
+
+.container {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 2%;
+    margin-right: 4%;
+    align-items: center;
+}
+
+.logo {
+    width: 220px;
+}
+
+.links {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: end;
+    align-items: center;
+}
+
+.marginMaior {
+    margin-right: 7%;
+    align-items: center;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+a {
+    color: white;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+}
+
+li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+li span {
+    margin-left: 50%;
+}
+
+.corpo {
+    display: flex;
+    justify-content: center;
+    height: 84.5vh;
+}
+
+.campoLogin, .campoCadastro {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 8%;
+    margin-bottom: 10%;
+    border: 2px solid #DE0209;
+    border-radius: 30px;
+    background-color: #D9D9D9;
+    width: 60%;
+    height: 350px;
+    align-items: center;
+    
+}
+
+.lado {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.tituloMenor {
+    margin-top: 8%;
+    margin-bottom: 4%;
+    width: 120px;
+}
+
+.camposEntrada span {
+    color: black;
+    margin-top: 5%;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+}
+
+.camposEntrada input {
+    border: 1px solid #DE0209;
+    background-color: rgb(222, 2, 9, 0.30);
+    border-radius: 6px;
+}
+
+.botao {
+    margin-top: 8%;
+    border: 1px solid #DE0209;
+    background-color: #464646;
+    color: white;
+    border-radius: 6px;
+    width: 50%;
+    height: 25px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.linhaLogo img {
+    width: 58px;
+}
+
+.tituloMaior {
+    margin-top: 8%;
+    margin-bottom: 4%;
+    width: 120px;
+    cursor: pointer;
+}
+
+.camposEntrada select {
+    border: 1px solid #DE0209;
+    background-color: rgb(222, 2, 9, 0.30);
+    border-radius: 6px;
+}
