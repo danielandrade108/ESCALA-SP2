@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Saira+Condensed&display=swap');
+
+* {
+    font-family: 'Saira Condensed', sans-serif;
+
+}
+
+body {
+    margin: 0;
+    background-color: #222222;
+}
+
+section {
+    width: 100%;
+    height: 15vh;
+}
+
+.header {
+    width: 100%;
+    height: 15vh;
+    background-color: #464646;
+    border-bottom: 3px solid #DE0209;
+    margin: 0;
+}
+
+.container {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 2%;
+    margin-right: 4%;
+    align-items: center;
+}
+
+.logo {
+    width: 220px;
+}
+
+.links {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: end;
+    align-items: center;
+}
+
+.marginMaior {
+    margin-right: 7%;
+    align-items: center;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+a {
+    color: white;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+}
+
+li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+li span {
+    margin-left: 50%;
+}
+
+.corpo {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.parteDeCima {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2%;
+    justify-content: center;
+}
+
+.campoEscolhido {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.tituloEscalacao {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.titulos{
+    margin: 0;
+    width: 65%;
+}
+
+.campos {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-around;
+    margin-bottom: 4%;
+}
+
+.campos img {
+    width: 270px;
+
+}
+
+.graficos {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.grafico_escalacaoPref {
+    width: 50%;
+}
+
+.grafico_jogadoresPref {
+    width: 70%;
+}

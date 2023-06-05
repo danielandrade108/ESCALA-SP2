@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESCALA - SP</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+    <header>
+        <div class="header">
+            <div class="container">
+                <a href="../index.html"><img class="logo" src="../imgs/nome_logo.png"></a>
+
+                <!-- <img src="imgs/Logo.png"> -->
+
+                <div class="links">
+                    <div class="marginMaior">
+                        <ul>
+                            <li><a href="../index.html#corpoHistoria">História</a></li>
+                            <li><img src="../imgs/linha.png"></li>
+                            <li><a href="../sobreMim.html">Sobre mim</a></li>
+                        </ul>
+                    </div>
+                    <ul>
+                        <a href="../login.html">
+                            <li><img style="width: 30px" , height="30px" src="../imgs/login_camisa.png"></li>
+                            <li><span>Login</span></li>
+                        </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="corpo">
+        <div class="parteDeCima">
+            <div class="campoEscolhido">
+                <img class="titulos" src="../imgs/titulo_dashboard.png">
+                <div id="campo_escolhido" class="campos">
+
+                </div>
+            </div>
+            <div class="graficos">
+                <img class="titulos" src="../imgs/titulo_escalacaoPref.png">
+                <div class="grafico_escalacaoPref">
+                    <canvas id="escalacaoPref"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="graficos">
+            <img class="titulos" src="../imgs/titulo_jogadorPref.png">
+            <div class="grafico_jogadoresPref">
+                <canvas id="jogadorPref"></canvas>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+
+<script>
+
+    campo_escolhido.innerHTML = `<img src="../imgs/campo_escalacao${numFormacao}.png">`
+
+    const grafico1 = document.getElementById('escalacaoPref');
+
+    new Chart(grafico1, {
+        type: 'doughnut',
+        data: {
+            labels: ['Escalação 1', 'Escalação 2', 'Escalação 3'],
+            datasets: [{
+                label: '# of Votes',
+                data: [4, 9, 14],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    const grafico2 = document.getElementById('jogadorPref');
+
+    new Chart(grafico2, {
+        type: 'bar',
+        data: {
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 3],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>

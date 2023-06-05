@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESCALA - SP</title>
+    <link rel="stylesheet" href="css/login.css">
+</head>
+
+<body>
+    <header>
+        <div class="header">
+            <div class="container">
+                <a href="index.html"><img class="logo" src="imgs/nome_logo.png"></a>
+
+                <!-- <img src="imgs/Logo.png"> -->
+
+                <div class="links">
+                    <div class="marginMaior">
+                        <ul>
+                            <li><a href="index.html#corpoHistoria">História</a></li>
+                            <li><img src="imgs/linha.png"></li>
+                            <li><a href="sobreMim.html">Sobre mim</a></li>
+                        </ul>
+                    </div>
+                    <ul>
+                        <a href="login.html">
+                            <li><img style="width: 30px" , height="30px" src="imgs/login_camisa.png"></li>
+                            <li><span>Login</span></li>
+                        </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="corpo">
+        <div id="div_login" class="campoLogin">
+            <div class="lado">
+
+                <img class="tituloMenor" src="imgs/titulo_login.png">
+
+                <div class="camposEntrada">
+                    <div class="campo">
+                        <span>E-mail:</span>
+                        <input id="ipt_emailLogin" type="text" placeholder="E-mail">
+                    </div>
+                    <div class="campo">
+                        <span>Senha:</span>
+                        <input id="ipt_senhaLogin" type="text" placeholder="******">
+                    </div>
+                </div>
+
+                <button class="botao" onclick="entrar()">Login</button>
+            </div>
+
+            <div class="linhaLogo">
+                <img src="imgs/linha_logo.png">
+            </div>
+
+            <div class="lado">
+                <img id="tituloCadastro" onclick="paraCadastro()" class="tituloMaior" src="imgs/titulo_cadastro.png">
+            </div>
+        </div>
+
+        <div id="div_cadastro" class="campoCadastro" style="display: none;">
+            <div class="lado">
+                <img id="tituloLogin" onclick="paraLogin()" class="tituloMaior" src="imgs/titulo_login.png">
+
+            </div>
+
+            <div class="linhaLogo">
+                <img src="imgs/linha_logo.png">
+            </div>
+
+            <div class="lado">
+                <img class="tituloMenor" src="imgs/titulo_cadastro.png">
+
+                <div class="camposEntrada">
+                    <div class="campo">
+                        <span>Nome:</span>
+                        <input id="ipt_nomeCadastro" type="text" placeholder="Seu nome">
+                    </div>
+                    <div class="campo">
+                        <span>E-mail:</span>
+                        <input id="ipt_emailCadastro" type="text" placeholder="E-mail">
+                    </div>
+                    <!-- <div class="campo">
+                        <span>Telefone:</span>
+                        <input id="ipt_telefoneCadastro" type="text" placeholder="(11)99999-9999">
+                    </div> -->
+                    <div class="campo">
+                        <span>Senha:</span>
+                        <input id="ipt_senhaCadastro" type="text" placeholder="******">
+                    </div>
+                    <div class="campo">
+                        <span>Confirmar Senha:</span>
+                        <input id="ipt_confSenhaCadastro" type="text" placeholder="******">
+                    </div>
+                </div>
+
+                <button class="botao" onclick="cadastrar()">Cadastrar</button>
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    var emailLogin = '';
+    var senhaLogin = '';
+
+    var nomeCadastro = '';
+    var emailCadastro = '';
+    var senhaCadastro = '';
+    var confSenhaCadastro = '';
+
+    function paraCadastro() {
+        div_login.style.display = 'none';
+        div_cadastro.style.display = 'flex';
+        tituloCadastro.style.cursor = 'pointer';
+    }
+
+    function paraLogin() {
+        div_cadastro.style.display = 'none';
+        div_login.style.display = 'flex';
+        tituloLogin.style.cursor = 'pointer';
+    }
+
+    var erroLogin = false;
+
+    function entrar() {
+
+        emailLogin = ipt_emailLogin.value;
+        senhaLogin = ipt_senhaLogin.value;
+
+        if (emailLogin == '' || senhaLogin == '') {
+            alert('Preencha os campos vazios.')
+            erroLogin = true;
+        } else {
+            erroLogin = false;
+        }
+        if (emailLogin.indexOf('@') == -1) {
+            alert('E-mail inválido.')
+            erroLogin = true;
+        } else {
+            erroLogin = false;
+        }
+
+        if (erroLogin = false) {
+            fetch("/usuarios/autenticar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    emailServer: emailLogin,
+                    senhaServer: senhaLogin
+                })
+            }).then(function (resposta) {
+                console.log("ESTOU NO THEN DO entrar()!")
+
+                if (resposta.ok) {
+                    console.log(resposta);
+
+                    resposta.json().then(json => {
+                        console.log(json);
+                        sessionStorage.EMAIL_USUARIO = json.email;
+                        sessionStorage.NOME_USUARIO = json.nome;
+                        sessionStorage.ID_USUARIO = json.id;
+
+                        setTimeout(function () {
+                            window.location = "escalacao.html";
+                        }, 1000); // apenas para exibir o loading
+
+                    });
+
+                } else {
+
+                    console.log("Houve um erro ao tentar realizar o login!");
+
+                    resposta.text().then(texto => {
+                        console.error(texto);
+                    });
+                }
+
+            }).catch(function (erro) {
+                console.log(erro);
+            })
+
+            return false;
+        }
+    }
+
+    var erroCadastro = false;
+
+    function cadastrar() {
+
+        nomeCadastro = ipt_nomeCadastro.value;
+        emailCadastro = ipt_emailCadastro.value;
+        senhaCadastro = ipt_senhaCadastro.value;
+        confSenhaCadastro = ipt_confSenhaCadastro.value;
+
+        if (nomeCadastro == '' || emailCadastro == '' || senhaCadastro == '' || confSenhaCadastro == '') {
+            alert('Preencha os campos vazios.')
+            erroCadastro = true;
+        } else {
+            erroCadastro = false;
+        }
+
+        if (emailCadastro.indexOf('@') == -1) {
+            alert('E-mail inválido')
+            erroCadastro = true;
+        } else {
+            erroCadastro = false;
+        }
+
+        if (senhaCadastro != confSenhaCadastro) {
+            alert('Senha não correspondem.')
+            erroCadastro = true;
+        } else {
+            erroCadastro = false;
+        }
+
+        if (erroCadastro == false) {
+
+            fetch("/usuarios/cadastrarUsuario", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    nomeServer: nomeCadastro
+                })
+            }).then(function (resposta) {
+
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+
+                    fetch("/usuarios/cadastrarLogin", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            // crie um atributo que recebe o valor recuperado aqui
+                            // Agora vá para o arquivo routes/usuario.js
+                            emailServer: emailCadastro,
+                            senhaServer: senhaCadastro
+                        })
+                    }).then(function (resposta) {
+
+                        console.log("resposta: ", resposta);
+
+                        if (resposta.ok) {
+
+                            setTimeout(() => {
+                                div_cadastro.style.display = 'none';
+                                div_login.style.display = 'flex';
+                                tituloLogin.style.cursor = 'pointer';
+                            }, "2000")
+
+
+                        } else {
+                            throw ("Houve um erro ao tentar realizar o cadastro!");
+                        }
+                    }).catch(function (resposta) {
+                        console.log(`#ERRO: ${resposta}`);
+                    });
+
+                    return false;
+
+
+                } else {
+                    throw ("Houve um erro ao tentar realizar o cadastro!");
+                }
+            }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+
+            return false;
+
+
+
+        }
+    }
+
+</script>
+
+
+
+<!-- div_cadastro.style.display = 'none';
+div_login.style.display = 'flex';
+tituloLogin.style.cursor = 'pointer'; -->
