@@ -52,20 +52,55 @@
 
 <script>
     var index = 0;
+    var campo = 0;
     function campoEscalacao1() {
-        window.location.href = 'dashboard/dashboard.html'
-        sessionStorage.INDEX = 1;
+        campo = 1;
+        inserirCampo(1)
     }
 
     function campoEscalacao2() {
-        window.location.href = 'dashboard/dashboard.html'
-        sessionStorage.INDEX = 2;
-        
+        campo = 2;
+        inserirCampo(campo)
+
     }
-    
+
     function campoEscalacao3() {
-        window.location.href = 'dashboard/dashboard.html'
-        sessionStorage.INDEX = 3;
-        
+        campo = 3;
+        inserirCampo(campo)
+
     }
+
+    function inserirCampo(campo) {
+        fetch("/escalacao/cadastrarEscalacao", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                campoServer: campo
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+
+                setTimeout(() => {
+                    window.location.href = 'dashboard/dashboard.html'
+                }, "2000")
+
+
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro da escalacao!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+        return false;
+
+
+
+    }
+
 </script>
