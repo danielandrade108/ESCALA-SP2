@@ -5,6 +5,11 @@ create table Formacao (
 idFormacao int primary key auto_increment
 );
 
+insert into Formacao values
+(1),
+(2),
+(3);
+
 create table Jogadores (
 idJogador int primary key auto_increment,
 nomeJogador varchar(45)
@@ -34,6 +39,9 @@ foreign key(fkJogador) references Jogadores(idJogador),
 fkLogin int,
 foreign key(fkLogin) references Login(idLogin)
 ) auto_increment = 1000;
+
+
+INSERT INTO Usuario (fkFormacao) VALUES (${campo});
 
 
 select * from Login;
