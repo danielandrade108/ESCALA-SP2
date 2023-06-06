@@ -40,10 +40,18 @@ select * from Login;
 select * from Usuario;
 
 SELECT * FROM Login join Usuario ON idLogin = fkLogin WHERE email = '${email}' AND senha = '${senha}';
+SELECT * FROM Login join Usuario ON idLogin = fkLogin WHERE email = 'daniel@gmail.com' AND senha = 123;
 
-        INSERT INTO Usuario (nomeUsuario, fkLogin) VALUES ('Andrey', (SELECT max(idLogin) FROM Login));
-        INSERT INTO Usuario (nomeUsuario, fkLogin) VALUES ('${nome}', (SELECT max(idLogin) FROM Login));
-
+	INSERT INTO Usuario (nomeUsuario, fkLogin) VALUES ('Andrey', (SELECT max(idLogin) FROM Login));
     INSERT INTO Login (email, senha) VALUES ('andrey@gmail.com', '123');
+    
+	INSERT INTO Usuario (nomeUsuario, fkLogin) VALUES ('Daniel', (SELECT max(idLogin) FROM Login));
+    INSERT INTO Login (email, senha) VALUES ('daniel@gmail.com', '123');
+
+INSERT INTO Usuario (nomeUsuario, fkLogin) VALUES ('${nome}', (SELECT max(idLogin) FROM Login));
+
+    
+delete from Login where idLogin = 1002;
+
 
 SELECT max(idLogin) FROM Login;
