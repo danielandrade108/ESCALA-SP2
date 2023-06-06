@@ -152,7 +152,7 @@
             erroLogin = false;
         }
 
-        if (erroLogin = false) {
+        if (erroLogin == false) {
             fetch("/usuarios/autenticar", {
                 method: "POST",
                 headers: {
@@ -174,9 +174,9 @@
                         sessionStorage.NOME_USUARIO = json.nome;
                         sessionStorage.ID_USUARIO = json.id;
 
-                        setTimeout(function () {
-                            window.location = "escalacao.html";
-                        }, 1000); // apenas para exibir o loading
+                        setTimeout(() => {
+                            window.location.href = "escalacao.html";
+                        }, "1000"); 
 
                     });
 
@@ -229,7 +229,7 @@
 
         if (erroCadastro == false) {
 
-            fetch("/usuarios/cadastrarUsuario", {
+            fetch("/usuarios/cadastrarLogin", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -237,7 +237,8 @@
                 body: JSON.stringify({
                     // crie um atributo que recebe o valor recuperado aqui
                     // Agora vá para o arquivo routes/usuario.js
-                    nomeServer: nomeCadastro
+                    emailServer: emailCadastro,
+                    senhaServer: senhaCadastro
                 })
             }).then(function (resposta) {
 
@@ -245,7 +246,7 @@
 
                 if (resposta.ok) {
 
-                    fetch("/usuarios/cadastrarLogin", {
+                    fetch("/usuarios/cadastrarUsuario", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json"
@@ -253,8 +254,7 @@
                         body: JSON.stringify({
                             // crie um atributo que recebe o valor recuperado aqui
                             // Agora vá para o arquivo routes/usuario.js
-                            emailServer: emailCadastro,
-                            senhaServer: senhaCadastro
+                            nomeServer: nomeCadastro
                         })
                     }).then(function (resposta) {
 
