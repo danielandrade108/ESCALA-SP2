@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ESCALA - SP</title>
     <link rel="stylesheet" href="css/login.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -105,7 +106,16 @@
             </div>
         </div>
 
+        <div id="alerta" style="display: flex;" class="alerta">
+            <div class="alertaCorpo">
+                <img id="alertaImg" class="alertaImg">
+                <span id="alertaText" class="alertaText">Preencha os campos vazios!</span>
+            </div>
+        </div>
     </div>
+
+
+
 
 </body>
 
@@ -135,19 +145,58 @@
     var erroLogin = false;
     var testando = 12;
 
+
+    function alertaErroVazio() {
+        alertaText.innerHTML = 'PRENCHA OS CAMPOS VAZIOS.'
+        alertaText.style.color = '#DE0209'
+        alertaImg.src = 'imgs/error_sp.png'
+        alerta.style.display = 'flex'
+        alerta.style.backgroundColor = '#D9D9D9'
+        alerta.style.borderColor = '#DE0209'
+    }
+
+    function alertaErroEmail() {
+        alertaText.innerHTML = 'E-MAIL INVÁLIDO.'
+        alertaText.style.color = '#DE0209'
+        alertaImg.src = 'imgs/error_sp.png'
+        alerta.style.display = 'flex'
+        alerta.style.backgroundColor = '#D9D9D9'
+        alerta.style.borderColor = '#DE0209'
+    }
+
+    function alertaLoginSucesso() {
+        alertaText.innerHTML = 'E-MAIL INVÁLIDO.'
+        alertaText.style.color = '#DE0209'
+        alertaImg.src = 'imgs/error_sp.png'
+        alerta.style.display = 'flex'
+        alerta.style.backgroundColor = '#D9D9D9'
+        alerta.style.borderColor = '#DE0209'
+    }
+
     function entrar() {
 
         emailLogin = ipt_emailLogin.value;
         senhaLogin = ipt_senhaLogin.value;
 
         if (emailLogin == '' || senhaLogin == '') {
-            alert('Preencha os campos vazios.')
+            // alert1.fire({})
+
+            alertaErroVazio()
+
+            setTimeout(() => {
+                alerta.style.display = 'none'
+            }, "3000");
             erroLogin = true;
         } else {
             erroLogin = false;
         }
         if (emailLogin.indexOf('@') == -1) {
-            alert('E-mail inválido.')
+
+            alertaErroEmail()
+
+            setTimeout(() => {
+                alerta.style.display = 'none'
+            }, "3000");
             erroLogin = true;
         } else {
             erroLogin = false;
@@ -157,8 +206,6 @@
 
             ipt_emailLogin.value = '';
             ipt_senhaLogin.value = '';
-
-            alert('Entrando na conta...')
 
             fetch("/usuarios/autenticar", {
                 method: "POST",
@@ -182,14 +229,26 @@
                         sessionStorage.ID_LOGIN = json[0].idLogin;
                         sessionStorage.NUM_CAMPO = json[0].fkFormacao;
                         sessionStorage.JOGADOR_PREF = json[0].jogadorPref;
+                        sessionStorage.NOME_LOGIN = json[0].nomeUsuario;
 
-                        setTimeout(() => {
-                            window.location.href = "escalacao.html";
-                        }, "1000");
+                        alert('Entrando na conta...')
+
+                        if (sessionStorage.NUM_CAMPO == 'null') {
+                            setTimeout(() => {
+                                window.location.href = "escalacao.html";
+                            }, "1000");
+                        } else {
+                            setTimeout(() => {
+                                window.location.href = "dashboard/dashboard.html";
+                            }, "1000");
+
+                        }
 
                     });
 
                 } else {
+
+                    alert('Login não existe.')
 
                     console.log("Houve um erro ao tentar realizar o login!");
 

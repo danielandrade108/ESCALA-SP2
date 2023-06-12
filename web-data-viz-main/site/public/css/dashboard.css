@@ -8,6 +8,19 @@
 body {
     margin: 0;
     background-color: #222222;
+}   
+
+section {
+    height: 100vh;
+}
+
+.section1 {
+    height:  110vh;
+}
+
+.section2 {
+    margin-top: 5%;
+    height: 90h;
 }
 
 .header {
@@ -65,8 +78,18 @@ li {
     align-items: center;
 }
 
-li span {
-    margin-left: 50%;
+ul span {
+    /* margin-left: 50%; */
+    color: white;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.sair {
+    font-size: 15px;
+    color: rgb(255, 255, 255, 0.80);
 }
 
 .corpo {
@@ -150,7 +173,7 @@ li span {
 }
 
 .campos img {
-    width: 400px;
+    width: 270px;
 }
 
 .grafico1 {
@@ -165,6 +188,7 @@ li span {
     flex-direction: row;
     justify-content: center;
     width: 100%;
+    /* margin-bottom: 3%; */
 }
 
 .seuJogadorPref {
@@ -197,7 +221,7 @@ li span {
 
 .grafico_escalacaoPref {
     margin-top: 4%;
-    width: 50%;
+    width: 350px;
 }
 
 .grafico_jogadoresPref {
@@ -209,4 +233,3 @@ li span {
 .parteDeBaixo .titulos {
     width: 70%;
 }
-

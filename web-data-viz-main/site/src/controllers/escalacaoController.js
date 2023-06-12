@@ -26,6 +26,35 @@ function cadastrarEscalacao(req, res) {
     }
 }
 
+function puxarJogador(req, res) {
+    var idLogin = req.params.idLogin;
+    
+        escalacaoModel.puxarJogador(idLogin)
+            .then(
+                function (resultadoAutenticar) {
+                    console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
+                    console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
+
+                    if (resultadoAutenticar.length == 1) {
+                        console.log(resultadoAutenticar);
+                        res.status(200).json(resultadoAutenticar);
+                    } else if (resultadoAutenticar.length == 0) {
+                        res.status(403).send("Não conseguiu buscar jogador.");
+                    }
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+
+
+
+
 module.exports = {
-    cadastrarEscalacao
+    cadastrarEscalacao,
+    puxarJogador
 }

@@ -71,7 +71,27 @@
     }
 
     function inserirCampo(campo) {
-        fetch(`/escalacao/cadastrarEscalacao/${sessionStorage.getItem("ID_LOGIN")}`, {
+
+        fetch(`/escalacao/puxarJogador/${sessionStorage.getItem("ID_LOGIN")}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+            }).then(function (resposta) {
+                console.log("ESTOU NO THEN DO entrar()!")
+
+                if (resposta.ok) {
+                    console.log(resposta);
+
+                    resposta.json().then(json => {
+                        console.log(json);
+                        sessionStorage.JOGADOR_PREF = json[0].jogadorPref;
+                        sessionStorage.NOME_LOGIN = json[0].nomeUsuario;
+
+                    });
+                    
+                    fetch(`/escalacao/cadastrarEscalacao/${sessionStorage.getItem("ID_LOGIN")}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -98,6 +118,23 @@
         });
 
         return false;
+
+                } else {
+
+                    console.log("Houve um erro ao tentar realizar o login!");
+
+                    resposta.text().then(texto => {
+                        console.error(texto);
+                    });
+                }
+
+            }).catch(function (erro) {
+                console.log(erro);
+            })
+
+            return false;
+
+        
 
     }
 

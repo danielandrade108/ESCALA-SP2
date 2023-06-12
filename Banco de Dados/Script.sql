@@ -12,14 +12,6 @@ insert into Formacao values
 (2),
 (3);
 
-create table FormacaoJogadores (
-fkFormacao int,
-foreign key(fkFormacao) references Formacao(idFormacao),
-fkJogador int,
-foreign key(fkJogador) references Jogadores(idJogador),
-primary key(fkFormacao, fkJogador)
-);
-
 create table Login (
 idLogin int primary key auto_increment,
 email varchar(35),
@@ -68,6 +60,8 @@ SELECT * FROM Login join Usuario ON idLogin = fkLogin WHERE email = '${email}' A
 SELECT * FROM Login join Usuario ON idLogin = fkLogin WHERE email = 'daniel@gmail.com' AND senha = 123;
 
 SELECT * FROM Login WHERE email = '${email}' AND senha = '${senha}';
+SELECT * FROM Login join Usuario on fkLogin = idLogin where email = '${email}' AND senha = '${senha}';
+SELECT * FROM Login join Usuario on fkLogin = idLogin where email = 'daniel@gmail.com' AND senha = 123;
 
 
    UPDATE Usuario SET fkFormacao = 1 where idUsuario = (SELECT max(idLogin) FROM Login);
@@ -85,3 +79,6 @@ SELECT count(*) qtdJogador, jogadorPref nomeJogador FROM Usuario GROUP BY jogado
 
 UPDATE Usuario SET jogadorPref = '${Jogador}' where idUsuario = ${idLogin};
 UPDATE Usuario SET jogadorPref = 'Beraldo' where idUsuario = 1001;
+
+SELECT * FROM Usuario WHERE idUsuario = 1001;
+SELECT * FROM Usuario WHERE idUsuario = ${idLogin};
