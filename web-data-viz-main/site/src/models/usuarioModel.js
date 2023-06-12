@@ -42,6 +42,3 @@ module.exports = {
     cadastrarUsuario
 };
 
-
-
-// INSERT INTO Login (email, senha) VALUES ('${email}', '${senha}');

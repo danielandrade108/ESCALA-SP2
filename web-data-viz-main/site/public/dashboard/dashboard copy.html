@@ -12,80 +12,78 @@
 </head>
 
 <body>
-    <header>
-        <div class="header">
-            <div class="container">
-                <a href="../index.html"><img class="logo" src="../imgs/nome_logo.png"></a>
 
-                <!-- <img src="imgs/Logo.png"> -->
+    <section class="section1">
+        <header>
+            <div class="header">
+                <div class="container">
+                    <a href="../index.html"><img class="logo" src="../imgs/nome_logo.png"></a>
 
-                <div class="links">
-                    <div class="marginMaior">
+                    <!-- <img src="imgs/Logo.png"> -->
+
+                    <div class="links">
+                        <div class="marginMaior">
+                            <ul>
+                                <li><a href="../index.html#corpoHistoria">História</a></li>
+                                <li><img src="../imgs/linha.png"></li>
+                                <li><a href="../sobreMim.html">Sobre mim</a></li>
+                            </ul>
+                        </div>
                         <ul>
-                            <li><a href="../index.html#corpoHistoria">História</a></li>
-                            <li><img src="../imgs/linha.png"></li>
-                            <li><a href="../sobreMim.html">Sobre mim</a></li>
-                        </ul>
+                            <a href="../login.html">
+                                <li><img style="width: 30px" , height="30px" src="../imgs/login_camisa.png"></li>
+                                <li><span>Login</span></li>
+                            </a>
+                            <!-- <span id="span_nomeLogin" class="nomeLogin"></span> -->
                     </div>
-                    <ul>
-                        <a href="../login.html">
-                            <li><img style="width: 30px" , height="30px" src="../imgs/login_camisa.png"></li>
-                            <li><span>Login</span></li>
-                        </a>
-                        <!-- <span id="span_nomeLogin" class="nomeLogin"></span> -->
                 </div>
             </div>
-        </div>
-    </header>
+        </header>
 
-    <div class="corpo">
-        <div class="parteDeCima">
-            <div class="campoEscolhido">
-                <img class="titulos" src="../imgs/titulo_dashboard.png">
-                <div class="corpoCampoSelect">
-                    <div id="campo_escolhido" class="campos">
+        <div class="corpo">
+            <div class="parteDeCima">
+                <div class="campoEscolhido">
+                    <img class="titulos" src="../imgs/titulo_dashboard.png">
+                    <div class="corpoCampoSelect">
+                        <div id="campo_escolhido" class="campos">
+                        </div>
+
+                        <div class="corpoJogadorPref">
+                            <select name="sel_jogadorPref" id="sel_jogadorPref">
+                                <option value="Luciano">Luciano</option>
+                                <option value="Calleri">Calleri</option>
+                                <option value="M. Paulo">M. Paulo</option>
+                                <option value="David">David</option>
+                                <option value="Pablo Maia">Pablo Maia</option>
+                                <option value="M. Araujo">M. Araujo</option>
+                                <option value="Alisson">Alisson</option>
+                                <option value="Luan">Luan</option>
+                                <option value="Gabi">Gabi</option>
+                                <option value="Igor Vinicius">Igor Vinicius</option>
+                                <option value="Caio">Caio</option>
+                                <option value="Rafinha">Rafinha</option>
+                                <option value="Diego Costa">Diego Costa</option>
+                                <option value="Arboleda">Arboleda</option>
+                                <option value="Beraldo">Beraldo</option>
+                                <option value="Rafael">Rafael</option>
+
+                            </select>
+                            <button onclick="adcJogador()">Adicionar Jogador Preferido</button>
+                        </div>
+
                     </div>
-
-                    <div class="corpoJogadorPref">
-                        <select name="sel_jogadorPref" id="sel_jogadorPref">
-                            <option value="Luciano">Luciano</option>
-                            <option value="Calleri">Calleri</option>
-                            <option value="M. Paulo">M. Paulo</option>
-                            <option value="David">David</option>
-                            <option value="Pablo Maia">Pablo Maia</option>
-                            <option value="M. Araujo">M. Araujo</option>
-                            <option value="Alisson">Alisson</option>
-                            <option value="Luan">Luan</option>
-                            <option value="Gabi">Gabi</option>
-                            <option value="Igor Vinicius">Igor Vinicius</option>
-                            <option value="Caio">Caio</option>
-                            <option value="Rafinha">Rafinha</option>
-                            <option value="Diego Costa">Diego Costa</option>
-                            <option value="Arboleda">Arboleda</option>
-                            <option value="Beraldo">Beraldo</option>
-                            <option value="Rafael">Rafael</option>
-
-                        </select>
-                        <button onclick="adcJogador()">Adicionar Jogador Preferido</button>
+                </div>
+                <div class="grafico1">
+                    <img class="titulos" src="../imgs/titulo_escalacaoPref.png">
+                    <div class="grafico_escalacaoPref">
+                        <canvas id="escalacaoPref"></canvas>
                     </div>
-
                 </div>
             </div>
-            <div class="grafico1">
-                <img class="titulos" src="../imgs/titulo_escalacaoPref.png">
-                <div class="grafico_escalacaoPref">
-                    <canvas id="escalacaoPref"></canvas>
-                </div>
-            </div>
-        </div>
-
+    </section>
+    <section class="section2">
         <div class="parteDeBaixo">
-            <div class="seuJogadorPref">
-                <img class="titulos" src="../imgs/titulo_seuJogadorPref.png">
-                <div class="caixa">
-                    <span id="sp_jogadorPref" class="sp_jogadorPref"></span>
-                </div>
-            </div>
+            <span id="sp_jogadorPref" class="sp_jogadorPref"></span>
             <div class="grafico2">
                 <img class="titulos" src="../imgs/titulo_jogadorPref.png">
                 <div class="grafico_jogadoresPref">
@@ -93,7 +91,13 @@
                 </div>
             </div>
         </div>
+        </div>
+    </section>
+</section>
     </div>
+
+
+
 
 </body>
 
@@ -109,30 +113,8 @@
     function adcJogador() {
         jogadorPref = sel_jogadorPref.value;
 
-        graficoJogador.data.labels = [];
-        graficoJogador.data.datasets[0].data = [];
 
         updJogadorPref(jogadorPref);
-
-        fetch("/dashboard/grafico2").then(function (resposta) {
-            if (resposta.ok) {
-
-                resposta.json().then(function (json) {
-                    console.log("Dados recebidos: ", JSON.stringify(json));
-
-                    for (let i = 0; i < json.length; i++) {
-                        graficoJogador.data.labels.push(json[i].nomeJogador);
-                        graficoJogador.data.datasets[0].data.push(json[i].qtdJogador);
-                    }
-
-                    graficoJogador.update();
-                });
-            } else {
-                throw ('Houve um erro na API!');
-            }
-        }).catch(function (resposta) {
-            console.error(resposta);
-        });
 
     }
 

@@ -12,7 +12,6 @@ router.post("/cadastrarUsuario", function (req, res) {
     usuarioController.cadastrarUsuario(req, res);
 })
 
-
 router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });

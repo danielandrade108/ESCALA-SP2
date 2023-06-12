@@ -133,6 +133,7 @@
     }
 
     var erroLogin = false;
+    var testando = 12;
 
     function entrar() {
 
@@ -153,6 +154,12 @@
         }
 
         if (erroLogin == false) {
+
+            ipt_emailLogin.value = '';
+            ipt_senhaLogin.value = '';
+
+            alert('Entrando na conta...')
+
             fetch("/usuarios/autenticar", {
                 method: "POST",
                 headers: {
@@ -170,13 +177,15 @@
 
                     resposta.json().then(json => {
                         console.log(json);
-                        sessionStorage.EMAIL_USUARIO = json.email;
-                        sessionStorage.NOME_USUARIO = json.nome;
-                        sessionStorage.ID_USUARIO = json.id;
+                        sessionStorage.EMAIL_LOGIN = json[0].email;
+                        sessionStorage.SENHA_LOGIN = json[0].senha;
+                        sessionStorage.ID_LOGIN = json[0].idLogin;
+                        sessionStorage.NUM_CAMPO = json[0].fkFormacao;
+                        sessionStorage.JOGADOR_PREF = json[0].jogadorPref;
 
                         setTimeout(() => {
                             window.location.href = "escalacao.html";
-                        }, "1000"); 
+                        }, "1000");
 
                     });
 
@@ -228,6 +237,13 @@
         }
 
         if (erroCadastro == false) {
+
+            ipt_nomeCadastro.value = '';
+            ipt_emailCadastro.value = '';
+            ipt_senhaCadastro.value = '';
+            ipt_confSenhaCadastro.value = '';
+
+            alert('Conta cadastrada.')
 
             fetch("/usuarios/cadastrarLogin", {
                 method: "POST",

@@ -10,11 +10,6 @@ body {
     background-color: #222222;
 }
 
-section {
-    width: 100%;
-    height: 15vh;
-}
-
 .header {
     width: 100%;
     height: 15vh;
@@ -79,11 +74,12 @@ li span {
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    /* height: 84vh; */
 }
 
 .parteDeCima {
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     margin-bottom: 2%;
     justify-content: center;
 }
@@ -101,11 +97,50 @@ li span {
     align-items: center;
 }
 
-.titulos{
-    margin: 0;
+.titulos {
     width: 65%;
 }
 
+.corpoCampoSelect {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5%;
+    align-items: center;
+}
+
+.corpoCampoSelect select {
+    border: 1px solid #DE0209;
+    background-color: rgba(222, 2, 9, 0.30);
+    border-radius: 6px;
+    width: 200px;
+    height: 30px;
+    color: white;
+    font-size: 16px;
+}
+
+.corpoCampoSelect option {
+    color: black;
+    font-size: 16px;
+}
+
+.corpoCampoSelect button {
+    margin-left: 10%;
+    border: 1px solid #DE0209;
+    background-color: #464646;
+    color: white;
+    border-radius: 6px;
+    width: 200px;
+    height: 30px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    font-size: 16px;
+}
+
+.corpoJogadorPref {
+    display: flex;
+    flex-direction: row;
+}
 .campos {
     display: flex;
     align-items: center;
@@ -115,20 +150,63 @@ li span {
 }
 
 .campos img {
-    width: 270px;
-
+    width: 400px;
 }
 
-.graficos {
+.grafico1 {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.parteDeBaixo {
+    display: flex;
+    /* align-items: center; */
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}
+
+.seuJogadorPref {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.caixa {
+    margin-top: 4%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #DE0209;
+    background-color: #D9D9D9;
+    border-radius: 6px;
+    width: 65%;
+    height: 110px;
+}
+
+.caixa span {
+    font-size: 50px;
+}
+
+.grafico2 {
     display: flex;
     align-items: center;
     flex-direction: column;
 }
 
 .grafico_escalacaoPref {
+    margin-top: 4%;
     width: 50%;
 }
 
 .grafico_jogadoresPref {
+    margin-top: 4%;
+    width: 80%;
+    display: flex;
+}
+
+.parteDeBaixo .titulos {
     width: 70%;
 }
+

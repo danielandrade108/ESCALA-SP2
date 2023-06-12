@@ -3,7 +3,8 @@ var router = express.Router();
 
 var escalacaoController = require("../controllers/escalacaoController");
 
-//Recebendo os dados do html e direcionando para a função cadastrar de usuarioController.js
-router.post("/cadastrarEscalacao", function (req, res) {
+router.put("/cadastrarEscalacao/:idLogin", function (req, res) {
     escalacaoController.cadastrarEscalacao(req, res);
 })
+
+module.exports = router;

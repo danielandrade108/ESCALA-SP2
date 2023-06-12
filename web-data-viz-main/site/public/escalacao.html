@@ -71,8 +71,8 @@
     }
 
     function inserirCampo(campo) {
-        fetch("/escalacao/cadastrarEscalacao", {
-            method: "POST",
+        fetch(`/escalacao/cadastrarEscalacao/${sessionStorage.getItem("ID_LOGIN")}`, {
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
@@ -85,10 +85,10 @@
 
             if (resposta.ok) {
 
-                setTimeout(() => {
-                    window.location.href = 'dashboard/dashboard.html'
-                }, "2000")
-
+                    sessionStorage.NUM_CAMPO = campo;
+                    setTimeout(() => {
+                        window.location.href = 'dashboard/dashboard.html'
+                    }, "2000")
 
             } else {
                 throw ("Houve um erro ao tentar realizar o cadastro da escalacao!");
@@ -98,8 +98,6 @@
         });
 
         return false;
-
-
 
     }
 

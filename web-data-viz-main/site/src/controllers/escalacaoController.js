@@ -1,13 +1,14 @@
-var escalaccaoModel = require("../models/escalacaoModel");
+var escalacaoModel = require("../models/escalacaoModel");
 
 function cadastrarEscalacao(req, res) {
     var campo = req.body.campoServer;
+    var idLogin = req.params.idLogin;
 
     if (campo == undefined) {
-        res.status(400).send("Seu email está undefined!");
+        res.status(400).send("Seu campo está undefined!");
     } else {
 
-        escalacaoModel.cadastrarEscalacao(campo)
+        escalacaoModel.cadastrarEscalacao(campo, idLogin)
             .then(
                 function (resultado) {
                     res.json(resultado);
