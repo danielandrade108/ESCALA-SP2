@@ -89,10 +89,10 @@ li span {
 }
 
 .textoCorpo {
-    margin-top: 20%;
+    margin-top: 10%;
     margin-left: 15%;    
     color: white;
-    font-size: 60px;
+    font-size: 50px;
 }
 
 .textoCorpo button {
@@ -120,27 +120,28 @@ li span {
     background-image: url(../imgs/fundoHistoria.png);
     background-size: 100%;
     width: 100%;
-    height: 100vh;
+    height: 99.5vh;
     background-repeat: no-repeat;
     display: flex;
+    border-bottom: 0.5vh solid #DE0209;
 }
 
 .tituloHistoria {
-    margin-top: 3%;
+    margin-top: 1%;
     margin-left: 8%;
     display: flex;
     flex-direction: column;
 }
 
 .tituloHistoria img {
-    width: 280px;
+    width: 230px;
     margin-left: 6%;
 }
 
 .tituloHistoria label {
-    font-size: 25px;
+    font-size: 23px;
     color: white;
-    width: 60%;
+    width: 95%;
 }
 
 .corpoSobreMim {
@@ -157,7 +158,7 @@ li span {
 }
 
 .sentimento {
-    margin-top: 1%;
+    margin-top: 3%;
     display: flex;
     justify-content: center;
 }
@@ -167,21 +168,21 @@ li span {
 }
 
 .tituloSobreMim {
-    margin-top: 3%;
+    margin-top: 2;
     margin-left: 8%;
     display: flex;
     flex-direction: column;
 }
 
 .tituloSobreMim img {
-    width: 350px;
+    width: 320px;
     margin-left: 6%;
 }
 
 .tituloSobreMim label {
-    font-size: 25px;
+    font-size: 23px;
     color: white;
-    width: 50%;
+    width: 85%;
 }
 
 .vermelho {
@@ -201,5 +202,6 @@ li span {
 
 p {
     text-indent: 5%;
+    margin: 0;
 }
 

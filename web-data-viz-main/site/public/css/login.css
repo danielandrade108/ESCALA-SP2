@@ -106,6 +106,7 @@ li span {
 .camposEntrada span {
     color: black;
     margin-top: 5%;
+    font-size: 20px;
 }
 
 .campo {
@@ -123,16 +124,18 @@ li span {
     background-color: rgb(222, 2, 9, 0.30);
     border-radius: 6px;
     width: 132px;
+    font-size: 15px;
+    padding-left: 5%;
 }
 
 .botao {
     margin-top: 8%;
-    border: 1px solid #DE0209;
+    border: 2px solid #DE0209;
     background-color: #464646;
     color: white;
     border-radius: 6px;
-    width: 50%;
-    height: 25px;
+    width: 60%;
+    height: 28px;
     align-items: center;
     display: flex;
     justify-content: center;
