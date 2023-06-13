@@ -106,10 +106,10 @@
             </div>
         </div>
 
-        <div id="alerta" style="display: flex;" class="alerta">
+        <div id="alerta" style="display: none;" class="alerta">
             <div class="alertaCorpo">
                 <img id="alertaImg" class="alertaImg">
-                <span id="alertaText" class="alertaText">Preencha os campos vazios!</span>
+                <span id="alertaText" class="alertaText"></span>
             </div>
         </div>
     </div>
@@ -147,16 +147,46 @@
 
 
     function alertaErroVazio() {
-        alertaText.innerHTML = 'PRENCHA OS CAMPOS VAZIOS.'
+        alertaText.innerHTML = 'Prencha os campos vazios'
         alertaText.style.color = '#DE0209'
         alertaImg.src = 'imgs/error_sp.png'
         alerta.style.display = 'flex'
         alerta.style.backgroundColor = '#D9D9D9'
         alerta.style.borderColor = '#DE0209'
+
+        setTimeout(() => {
+                    alerta.style.display = 'none'
+                }, "3000")
     }
 
     function alertaErroEmail() {
-        alertaText.innerHTML = 'E-MAIL INVÁLIDO.'
+        alertaText.innerHTML = 'E-mail inválido'
+        alertaText.style.color = '#DE0209'
+        alertaImg.src = 'imgs/error_sp.png'
+        alerta.style.display = 'flex'
+        alerta.style.backgroundColor = '#D9D9D9'
+        alerta.style.borderColor = '#DE0209'
+
+        setTimeout(() => {
+                    alerta.style.display = 'none'
+                }, "3000")
+    }
+
+    function alertaErroSenha() {
+        alertaText.innerHTML = 'Senhas não correspondem'
+        alertaText.style.color = '#DE0209'
+        alertaImg.src = 'imgs/error_sp.png'
+        alerta.style.display = 'flex'
+        alerta.style.backgroundColor = '#D9D9D9'
+        alerta.style.borderColor = '#DE0209'
+
+        setTimeout(() => {
+                    alerta.style.display = 'none'
+                }, "3000")
+    }
+
+    function alertaLoginErro() {
+        alertaText.innerHTML = 'Login não existe'
         alertaText.style.color = '#DE0209'
         alertaImg.src = 'imgs/error_sp.png'
         alerta.style.display = 'flex'
@@ -165,12 +195,26 @@
     }
 
     function alertaLoginSucesso() {
-        alertaText.innerHTML = 'E-MAIL INVÁLIDO.'
-        alertaText.style.color = '#DE0209'
-        alertaImg.src = 'imgs/error_sp.png'
+        alertaText.innerHTML = `Bem vindo ${sessionStorage.NOME_LOGIN}!`
+        alertaText.style.color = 'black'
+        alertaImg.src = 'imgs/certo_sp.png'
         alerta.style.display = 'flex'
         alerta.style.backgroundColor = '#D9D9D9'
-        alerta.style.borderColor = '#DE0209'
+        alerta.style.borderColor = 'black'
+    }
+
+
+    function alertaCadastroSucesso() {
+        alertaText.innerHTML = `Conta cadastrada com sucesso!`
+        alertaText.style.color = 'black'
+        alertaImg.src = 'imgs/certo_sp.png'
+        alerta.style.display = 'flex'
+        alerta.style.backgroundColor = '#D9D9D9'
+        alerta.style.borderColor = 'black'
+
+        setTimeout(() => {
+                    alerta.style.display = 'none'
+                }, "2000")
     }
 
     function entrar() {
@@ -179,33 +223,27 @@
         senhaLogin = ipt_senhaLogin.value;
 
         if (emailLogin == '' || senhaLogin == '') {
-            // alert1.fire({})
-
+  
             alertaErroVazio()
 
             setTimeout(() => {
                 alerta.style.display = 'none'
             }, "3000");
             erroLogin = true;
-        } else {
-            erroLogin = false;
-        }
-        if (emailLogin.indexOf('@') == -1) {
+        } else
+            if (emailLogin.indexOf('@') == -1) {
 
-            alertaErroEmail()
+                alertaErroEmail()
 
-            setTimeout(() => {
-                alerta.style.display = 'none'
-            }, "3000");
-            erroLogin = true;
-        } else {
-            erroLogin = false;
-        }
+                setTimeout(() => {
+                    alerta.style.display = 'none'
+                }, "3000");
+                erroLogin = true;
+            } else {
+                erroLogin = false;
+            }
 
         if (erroLogin == false) {
-
-            ipt_emailLogin.value = '';
-            ipt_senhaLogin.value = '';
 
             fetch("/usuarios/autenticar", {
                 method: "POST",
@@ -231,7 +269,10 @@
                         sessionStorage.JOGADOR_PREF = json[0].jogadorPref;
                         sessionStorage.NOME_LOGIN = json[0].nomeUsuario;
 
-                        alert('Entrando na conta...')
+                        ipt_emailLogin.value = '';
+                        ipt_senhaLogin.value = '';
+
+                        alertaLoginSucesso()
 
                         if (sessionStorage.NUM_CAMPO == 'null') {
                             setTimeout(() => {
@@ -248,7 +289,7 @@
 
                 } else {
 
-                    alert('Login não existe.')
+                    alertaLoginErro()
 
                     console.log("Houve um erro ao tentar realizar o login!");
 
@@ -275,25 +316,19 @@
         confSenhaCadastro = ipt_confSenhaCadastro.value;
 
         if (nomeCadastro == '' || emailCadastro == '' || senhaCadastro == '' || confSenhaCadastro == '') {
-            alert('Preencha os campos vazios.')
+            alertaErroVazio()
             erroCadastro = true;
-        } else {
-            erroCadastro = false;
-        }
-
-        if (emailCadastro.indexOf('@') == -1) {
-            alert('E-mail inválido')
-            erroCadastro = true;
-        } else {
-            erroCadastro = false;
-        }
-
-        if (senhaCadastro != confSenhaCadastro) {
-            alert('Senha não correspondem.')
-            erroCadastro = true;
-        } else {
-            erroCadastro = false;
-        }
+        } else
+            if (emailCadastro.indexOf('@') == -1) {
+                alertaErroEmail()
+                erroCadastro = true;
+            } else
+                if (senhaCadastro != confSenhaCadastro) {
+                    alertaErroSenha()
+                    erroCadastro = true;
+                } else {
+                    erroCadastro = false;
+                }
 
         if (erroCadastro == false) {
 
@@ -302,7 +337,6 @@
             ipt_senhaCadastro.value = '';
             ipt_confSenhaCadastro.value = '';
 
-            alert('Conta cadastrada.')
 
             fetch("/usuarios/cadastrarLogin", {
                 method: "POST",
@@ -310,8 +344,6 @@
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    // crie um atributo que recebe o valor recuperado aqui
-                    // Agora vá para o arquivo routes/usuario.js
                     emailServer: emailCadastro,
                     senhaServer: senhaCadastro
                 })
@@ -327,8 +359,6 @@
                             "Content-Type": "application/json"
                         },
                         body: JSON.stringify({
-                            // crie um atributo que recebe o valor recuperado aqui
-                            // Agora vá para o arquivo routes/usuario.js
                             nomeServer: nomeCadastro
                         })
                     }).then(function (resposta) {
@@ -336,6 +366,8 @@
                         console.log("resposta: ", resposta);
 
                         if (resposta.ok) {
+
+                            alertaCadastroSucesso()
 
                             setTimeout(() => {
                                 div_cadastro.style.display = 'none';

@@ -28,7 +28,7 @@
                         </ul>
                     </div>
                     <ul>
-                        <span id="span_nomeLogin" class="nomeLogin"></span>
+                        <li><span id="span_nomeLogin" class="nomeLogin"></span></li>
                         <a href="../login.html">
                             <li><span class="sair">Sair</span></li>
                         </a>
@@ -93,8 +93,8 @@
                 </div>
                 <div class="grafico2">
                     <img class="titulos" src="../imgs/titulo_jogadorPref.png">
-                    <div class="grafico_jogadoresPref">
-                        <canvas id="jogadorPref"></canvas>
+                    <div>
+                        <canvas id="jogadorPref"  class="grafico_jogadoresPref"></canvas>
                     </div>
                 </div>
             </div>
@@ -113,7 +113,7 @@
     } else {
         sp_jogadorPref.innerHTML = `${sessionStorage.JOGADOR_PREF}`
     }
-    span_nomeLogin.innerHTML = `Ola ${sessionStorage.NOME_LOGIN}`;
+    span_nomeLogin.innerHTML = `Olá ${sessionStorage.NOME_LOGIN}`;
 
     var jogadorPref = 'Nenhum';
 

@@ -160,14 +160,15 @@ li span {
     border-radius: 15px;
     border: solid 2px ;
     z-index: 2;
-    width: 380px;
-    height: 70px;
+    width: 360px;
+    height: 110px;
     top: 35vh;
     /* right: 1%; */
 }
 
 .alertaCorpo {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -185,6 +186,6 @@ li span {
 }
 
 .alertaImg {
-    width: 37px;
-    height: 37px;
+    width: 40px;
+    height: 40px;
 }

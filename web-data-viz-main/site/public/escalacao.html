@@ -26,9 +26,9 @@
                         </ul>
                     </div>
                     <ul>
-                        <a href="login.html">
-                            <li><img style="width: 30px" , height="30px" src="imgs/login_camisa.png"></li>
-                            <li><span>Login</span></li>
+                        <li><span id="span_nomeLogin" class="nomeLogin"></span></li>
+                        <a href="../login.html">
+                            <li><span class="sair">Sair</span></li>
                         </a>
                 </div>
             </div>
@@ -51,6 +51,9 @@
 </html>
 
 <script>
+
+    span_nomeLogin.innerHTML = `Olá ${sessionStorage.NOME_LOGIN}`;
+
     var index = 0;
     var campo = 0;
     function campoEscalacao1() {
@@ -73,68 +76,68 @@
     function inserirCampo(campo) {
 
         fetch(`/escalacao/puxarJogador/${sessionStorage.getItem("ID_LOGIN")}`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-
-            }).then(function (resposta) {
-                console.log("ESTOU NO THEN DO entrar()!")
-
-                if (resposta.ok) {
-                    console.log(resposta);
-
-                    resposta.json().then(json => {
-                        console.log(json);
-                        sessionStorage.JOGADOR_PREF = json[0].jogadorPref;
-                        sessionStorage.NOME_LOGIN = json[0].nomeUsuario;
-
-                    });
-                    
-                    fetch(`/escalacao/cadastrarEscalacao/${sessionStorage.getItem("ID_LOGIN")}`, {
-            method: "PUT",
+            method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({
-                campoServer: campo
-            })
-        }).then(function (resposta) {
 
-            console.log("resposta: ", resposta);
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
 
             if (resposta.ok) {
+                console.log(resposta);
 
-                    sessionStorage.NUM_CAMPO = campo;
-                    setTimeout(() => {
-                        window.location.href = 'dashboard/dashboard.html'
-                    }, "2000")
+                resposta.json().then(json => {
+                    console.log(json);
+                    sessionStorage.JOGADOR_PREF = json[0].jogadorPref;
+                    sessionStorage.NOME_LOGIN = json[0].nomeUsuario;
+
+                });
+
+                fetch(`/escalacao/cadastrarEscalacao/${sessionStorage.getItem("ID_LOGIN")}`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        campoServer: campo
+                    })
+                }).then(function (resposta) {
+
+                    console.log("resposta: ", resposta);
+
+                    if (resposta.ok) {
+
+                        sessionStorage.NUM_CAMPO = campo;
+                        setTimeout(() => {
+                            window.location.href = 'dashboard/dashboard.html'
+                        }, "2000")
+
+                    } else {
+                        throw ("Houve um erro ao tentar realizar o cadastro da escalacao!");
+                    }
+                }).catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                });
+
+                return false;
 
             } else {
-                throw ("Houve um erro ao tentar realizar o cadastro da escalacao!");
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
             }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-        });
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
 
         return false;
 
-                } else {
 
-                    console.log("Houve um erro ao tentar realizar o login!");
-
-                    resposta.text().then(texto => {
-                        console.error(texto);
-                    });
-                }
-
-            }).catch(function (erro) {
-                console.log(erro);
-            })
-
-            return false;
-
-        
 
     }
 

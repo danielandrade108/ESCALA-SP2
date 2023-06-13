@@ -92,7 +92,7 @@ li span {
     margin-top: 20%;
     margin-left: 15%;    
     color: white;
-    font-size: 40px;
+    font-size: 60px;
 }
 
 .textoCorpo button {
@@ -113,7 +113,6 @@ li span {
 
 .campo img {
     width: 350px;
-    filter: opacity(80%);
 }
 
 .corpoHistoria {
@@ -124,25 +123,83 @@ li span {
     height: 100vh;
     background-repeat: no-repeat;
     display: flex;
-
 }
 
 .tituloHistoria {
-    margin-top: 6%;
+    margin-top: 3%;
     margin-left: 8%;
     display: flex;
     flex-direction: column;
-    width: 40%;
 }
 
 .tituloHistoria img {
-    width: 250px;
+    width: 280px;
     margin-left: 6%;
 }
 
 .tituloHistoria label {
-    font-size: 20px;
+    font-size: 25px;
     color: white;
+    width: 60%;
+}
 
+.corpoSobreMim {
+    margin: 0;
+    background-image: url(../imgs/fundoSobreMim.png);
+    background-size: 100%;
+    width: 100%;
+    height: 100vh;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.sentimento {
+    margin-top: 1%;
+    display: flex;
+    justify-content: center;
+}
+
+.sentimento img {
+    width: 85%;
+}
+
+.tituloSobreMim {
+    margin-top: 3%;
+    margin-left: 8%;
+    display: flex;
+    flex-direction: column;
+}
+
+.tituloSobreMim img {
+    width: 350px;
+    margin-left: 6%;
+}
+
+.tituloSobreMim label {
+    font-size: 25px;
+    color: white;
+    width: 50%;
+}
+
+.vermelho {
+    color: #DE0209;
+    font-weight: bold;
+}
+
+.preto {
+    color: black;
+    font-weight: bold;
+}
+
+.branco {
+    color: white;
+    font-weight: bold;
+}
+
+p {
+    text-indent: 5%;
 }
 
